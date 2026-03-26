@@ -408,3 +408,49 @@ footer { background:var(--bg2); border-top:1px solid var(--border); padding:32px
 .project-card:hover .project-thumb-label {
   opacity: 0;
 }
+
+
+/* ── Project Slideshow ── */
+.slideshow-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow-wrap .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slideshow-wrap .slide.active {
+  opacity: 1;
+}
+
+.slide-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 10;
+}
+
+.slide-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slide-dots span.active {
+  background: #fff;
+}

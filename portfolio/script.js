@@ -593,3 +593,32 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   });
 })();
+
+// ── Project Slideshows ──
+document.querySelectorAll('.project-thumb').forEach(thumb => {
+  const slides = thumb.querySelectorAll('.slideshow-wrap .slide');
+  const dotsEl = thumb.querySelector('.slide-dots');
+  if (!slides.length || !dotsEl) return;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(dot);
+  });
+
+  const dots = dotsEl.querySelectorAll('span');
+  let current = 0;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  // Auto-rotate every 3.5 seconds
+  setInterval(() => goTo(current + 1), 3500);
+});
